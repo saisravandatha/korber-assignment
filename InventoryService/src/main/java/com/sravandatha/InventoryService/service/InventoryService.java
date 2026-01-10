@@ -43,6 +43,6 @@ public class InventoryService {
         InventoryAllocationStrategy strategy =
                 strategyFactory.getStrategy(InventoryStrategyType.FIFO);
 
-        return strategy.allocateInventory(request.quantity(), request.productId());
+        return strategy.allocateInventory(request.productId(), request.quantity());
     }
 }
