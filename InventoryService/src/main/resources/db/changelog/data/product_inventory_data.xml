@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet id="load-product-inventory-data" author="sravan">
+        <loadData
+                file="csv/product_inventory.csv"
+                tableName="product_inventory"
+                separator=","
+                relativeToChangelogFile="true">
+            <column name="batch_id" type="NUMERIC"/>
+            <column name="product_id" type="NUMERIC"/>
+            <column name="product_name" type="STRING"/>
+            <column name="quantity" type="NUMERIC"/>
+            <column name="expiry_date" type="DATE"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

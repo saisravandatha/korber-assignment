@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet id="load-orders-data" author="sravan">
+        <loadData
+                file="csv/orders.csv"
+                tableName="orders_table"
+                separator=","
+                relativeToChangelogFile="true">
+            <column name="order_id" type="NUMERIC"/>
+            <column name="product_id" type="NUMERIC"/>
+            <column name="product_name" type="STRING"/>
+            <column name="quantity" type="NUMERIC"/>
+            <column name="status" type="STRING"/>
+            <column name="order_date" type="DATE"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
