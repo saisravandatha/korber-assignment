@@ -107,3 +107,11 @@ components:
       type: object
       properties:
         message:
+          type: string
+          example: "DELIVERED"
+        productName:
+          type: string
+          example: "phone"
+        batchIds:
+          type: array
+          example: "[1,2,3]"
