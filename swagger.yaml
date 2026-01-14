@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: Inventory and Order API
+  description: APIs for inventory lookup, inventory update, and order placement
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /inventory/{productId}:
+    get:
+      summary: Get inventory details by product ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1001
+      responses:
+        '200':
+          description: Inventory details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryResponse'
+
+  /inventory/update:
+    put:
+      summary: Update inventory quantity for a product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryUpdateRequest'
+      responses:
+        '200':
+          description: Inventory updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpdateResponse'
+
+  /order:
+    post:
+      summary: Place an order and reserve inventory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order placed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+
+components:
+  schemas:
+    InventoryResponse:
+      type: object
+      properties:
+        productId:
+          type: integer
+          example: 1001
+        productName:
+          type: string
+          example: Laptop
+        batches:
+          type: array
+          items:
+            $ref: '#/components/schemas/Batch'
+
+    Batch:
+      type: object
+      properties:
+        batchId:
+          type: integer
+          example: 1
+        quantity:
+          type: integer
+          example: 50
+        expiryDate:
+          type: string
+          format: date
+          example: 2025-12-31
+
+    InventoryUpdateRequest:
+      type: object
+      required:
+        - productId
+        - quantity
+      properties:
+        productId:
+          type: integer
+          example: 1002
+        quantity:
+          type: integer
+          example: 3
+
+    InventoryUpdateResponse:
+      type: object
+      properties:
+        message:
