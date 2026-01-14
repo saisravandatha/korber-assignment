@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "Inventory and Order APIs",
+    "description": "Postman collection for Inventory and Order management APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Inventory by Product ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/inventory/1001",
+          "host": ["{{baseUrl}}"],
+          "path": ["inventory", "1001"]
+        }
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"productId\": 1001,\n  \"productName\": \"Laptop\",\n  \"batches\": [\n    {\n      \"batchId\": 1,\n      \"quantity\": 50,\n      \"expiryDate\": \"2025-12-31\"\n    },\n    {\n      \"batchId\": 2,\n      \"quantity\": 30,\n      \"expiryDate\": \"2026-03-15\"\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Inventory",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": 1002,\n  \"quantity\": 3\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/inventory/update",
+          "host": ["{{baseUrl}}"],
+          "path": ["inventory", "update"]
+        }
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"message\": \"Inventory updated successfully for product Smartphone\",\n  \"batchIds\": [3, 4]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Place Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": 1002,\n  \"quantity\": 3\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/order",
+          "host": ["{{baseUrl}}"],
+          "path": ["order"]
+        }
+      },
+      "response": [
+        {
+          "name": "201 Created",
+          "status": "Created",
+          "code": 201,
+          "body": "{\n  \"orderId\": 5012,\n  \"productId\": 1002,\n  \"productName\": \"Smartphone\",\n  \"quantity\": 3,\n  \"status\": \"PLACED\"
