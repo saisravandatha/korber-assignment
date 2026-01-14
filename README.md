@@ -79,3 +79,50 @@ mvn spring-boot:run
 cd order-service
 mvn spring-boot:run
 ```
+
+## 🔍 API Test Scenarios
+
+---
+
+### 1️⃣ Get Inventory by Product ID
+
+**Endpoint**
+```http
+GET /inventory/{productId}
+RESPONSE {
+  "productId": 1001,
+  "productName": "Laptop",
+  "batches": [
+    {
+      "batchId": 1,
+      "quantity": 50,
+      "expiryDate": "2025-12-31"
+    }
+  ]
+}
+PUT /inventory/update
+Enter the request body:
+{
+  "productId": 1002,
+  "quantity": 3
+}
+RESPONSE:
+{
+  "message": "Inventory updated successfully for product Smartphone",
+  "batchIds": [3, 4]
+}
+POST /order
+REQUEST: {
+  "productId": 1002,
+  "quantity": 3
+}
+
+RESPONSE: {
+  "orderId": 5012,
+  "productId": 1002,
+  "productName": "Smartphone",
+  "quantity": 3,
+  "status": "PLACED",
+  "reservedFromBatchIds": [3],
+  "message": "Order placed. Inventory reserved."
+}
