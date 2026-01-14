@@ -86,7 +86,8 @@ mvn spring-boot:run
 **Endpoints**
 ```http
 GET /inventory/{productId}
-RESPONSE {
+RESPONSE:
+{
   "productId": 1001,
   "productName": "Laptop",
   "batches": [
@@ -98,7 +99,7 @@ RESPONSE {
   ]
 }
 PUT /inventory/update
-Enter the request body:
+REQUEST:
 {
   "productId": 1002,
   "quantity": 3
