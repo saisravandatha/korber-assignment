@@ -102,7 +102,47 @@ components:
         quantity:
           type: integer
           example: 3
+    OrderRequest:
+      type: object
+      required:
+        - productId
+        - quantity
+      properties:
+        productId:
+          type: integer
+          example: 1002
+        quantity:
+          type: integer
+          minimum: 1
+          example: 3
 
+    OrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: integer
+          example: 5012
+        productId:
+          type: integer
+          example: 1002
+        productName:
+          type: string
+          example: Smartphone
+        quantity:
+          type: integer
+          example: 3
+        status:
+          type: string
+          example: PLACED
+        reservedFromBatchIds:
+          type: array
+          items:
+            type: integer
+          example: [3]
+        message:
+          type: string
+          example: Order placed. Inventory reserved.
+          
     InventoryUpdateResponse:
       type: object
       properties:
@@ -115,3 +155,4 @@ components:
         batchIds:
           type: array
           example: "[1,2,3]"
+  
