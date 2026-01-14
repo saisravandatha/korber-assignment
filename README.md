@@ -83,10 +83,7 @@ mvn spring-boot:run
 ## 🔍 API Test Scenarios
 
 ---
-
-### 1️⃣ Get Inventory by Product ID
-
-**Endpoint**
+**Endpoints**
 ```http
 GET /inventory/{productId}
 RESPONSE {
